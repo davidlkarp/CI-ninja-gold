@@ -7,8 +7,7 @@ class ninjaGold extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('ninjaGold');
-
+		
 		$reset = $this->input->post('reset');
 		if($this->input->post('reset'))
 		{
@@ -16,29 +15,32 @@ class ninjaGold extends CI_Controller {
 			$this->session->unset_userdata('goldPerm');
 			$this->session->unset_userdata('energy');
 		}
+		$this->load->view('ninjaGold');
+
 
 	}
 
 	public function farm()
 	{
-		
-		if ($this->session->userdata('energy'))
+		$energy=$this->session->userdata('energy');
+		var_dump($energy);
+		if ($energy!==false)
 		{
-			
 			$BigEnergy = $this->session->userdata('energy');
 			$this->session->set_userdata('energy', $BigEnergy -10); //credit to chris
+			var_dump($this->session->all_userdata());
 		}
 		else{
 			$this->energy -=10;
-			
+			var_dump($this->energy);
+			echo "here";
 			$this->session->set_userdata('energy', $this->energy);
 		}
-
-		
-
 		if( $this->session->userdata('energy')<= 0)
 		{
 			$this->session->set_userdata('message', 'You stole ran out of energy' .'<br>' . $this->session->userdata('message'). '<br>' );
+			
+			$this->session->set_userdata('energy',0);
 			redirect('ninjaGold');
 			/// object is to keep energy at 0;
 		} 
