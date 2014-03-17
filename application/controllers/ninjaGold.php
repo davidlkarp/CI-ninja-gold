@@ -14,7 +14,7 @@ class ninjaGold extends CI_Controller {
 		{
 			$this->session->unset_userdata('message');
 			$this->session->unset_userdata('goldPerm');
-			$this->session->unset_userdata('energy');
+			$this->session->unset_userdata('energy', 100);
 		}
 
 	}
@@ -22,15 +22,14 @@ class ninjaGold extends CI_Controller {
 	public function farm()
 	{
 		
-		if ($this->session->userdata('energy'))
+		if ($this->session->userdata('energy') > 0)
 		{
 			
 			$BigEnergy = $this->session->userdata('energy');
 			$this->session->set_userdata('energy', $BigEnergy -10); //credit to chris
 		}
 		else{
-			$this->energy -=10;
-			
+
 			$this->session->set_userdata('energy', $this->energy);
 		}
 
