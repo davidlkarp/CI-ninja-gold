@@ -1,4 +1,4 @@
-<?php
+<?Index-php
 
 /*
  *---------------------------------------------------------------
@@ -151,7 +151,7 @@ if (defined('ENVIRONMENT'))
 	// Is the system path correct?
 	if ( ! is_dir($system_path))
 	{
-		exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
+		exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this:- ".pathinfo(__FILE__, PATHINFO_BASENAME));
 	}
 
 /*
